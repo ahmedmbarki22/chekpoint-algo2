@@ -1,0 +1,38 @@
+ALGORITHM loan_cars;
+VAR
+    r1:FLOAT:=0.7;
+    r2:FLOAT:=0.4;
+    r3:FLOAT:=0.2;
+    vat:FLOAT:=0.18;
+    ins:FLOAT:=0.3;
+    p_d:FLOAT:= 100;
+    sum1, sum2,distance, result1, result2:FLOAT;
+    nbrDays : INTEGER;
+BEGIN
+    //  CALCULATE THE PRICE PER DISTANCE
+    REPEAT
+    Write("Please enter your distance");
+    Read(distance);
+    UNTIL (distance<0)
+    IF (distance <= 100 ) THEN
+    sum1 := distance * r1;
+    ELSE_IF (distance > 100 AND distance <=1000) THEN
+        sum1 := r1 *100 +  (distance-100) * r2;
+    ELSE
+        sum1 := r1 *100 + r2 *900 + (distance - 1000) * r3;
+    END_IF
+
+    // CALCULATE THE PRICE PER DAYS
+     REPEAT
+    Write("Please enter your days");
+    Read(nbrDays);
+    UNTIL (nbrDays<0)
+    sum2 := nbrDays * p_d
+    result1 := sum1 + sum1*vat + sum1*ins
+    result2 := sum2 + sum2*vat + sum2*ins
+    IF ( result1 < result2  ) THEN
+        Write("First choice is better for you")
+    ELSE
+        Write("Second choice is better for you")
+    END_IF
+END
